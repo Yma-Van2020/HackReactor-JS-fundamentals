@@ -1,0 +1,39 @@
+// FUNCTION DEFINITION(S)
+function map(array, callbackFunction) {
+  var newArray = [];
+
+  for (var i = 0; i < array.length; i++) {
+    newArray = newArray + callbackFunction(array[i]);
+  }
+
+  return newArray;
+}
+
+function cubeAll(numbers) {
+  return map(numbers, function(n) {
+    return n * n;
+  });
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertArraysEqual(actual, expected, testName){
+    if(actual === expected){
+        console.log("passed");
+    } else{
+        console.log("FAILED [" +testName+ "]");
+    }
+}
+
+// TESTS CASES
+var testName = "the calledback function should be applied to every elem in the arr"
+var result = map([2, 4, 6], elem => elem + 1); 
+assertArraysEqual(result, [3, 5, 7], testName);
+
+var result = map([-1, 0, 1], elem => elem / elem); 
+assertArraysEqual(result, [1, 0, 1], testName);
+
+var result = cubeAll(-1);
+assertArraysEqual(result, 1, testName);
+
+var result = cubeAll(2) ;
+assertArraysEqual(result, 4, testName);
