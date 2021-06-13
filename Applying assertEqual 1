@@ -1,0 +1,23 @@
+// FUNCTION DEFINITION(S)
+function square(n) {
+  return n * n;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertEqual(actual, expected, testName) {
+  if (actual === expected) {
+  console.log("passed");
+  } else {
+  console.log("FAILED [" + testName + "]");
+  }
+  }
+
+// TESTS CASES
+var result = square(0)
+assertEqual(result, 0, "result should be the square of the input") 
+
+var result = square(2)
+assertEqual(result, 4, "result should be the square of the input") 
+
+var result = square(-1)
+assertEqual(result, 1, "result should be the square of the input") 
