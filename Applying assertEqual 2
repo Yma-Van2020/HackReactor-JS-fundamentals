@@ -1,0 +1,32 @@
+// Note: This is a simple, albeit temporarily incorrect implementation of the standard Array method "every()":
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+
+// FUNCTION DEFINITION(S)
+function every(array, callbackFunction) {
+  var doesEveryElementMatch = true;
+
+  for (var i = 0; i < array.length; i++) {
+    doesEveryElementMatch = callbackFunction(array[i]);
+  }
+
+  return doesEveryElementMatch;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertEqual(actual, expected, testName){
+   if (actual === expected) {
+  console.log("passed");
+  } else {
+  console.log("FAILED [" + testName + "]")
+  }
+}
+
+// TESTS CASES
+let testName = "the callbackfunction should be applied to every elem in the array"
+var result = every([1,3,5], elem => elem * elem)
+assertEqual(result, [1, 9, 25], testName)
+
+var result = every([2,3,5], elem => elem / elem)
+assertEqual(result, [1, 1, 1], testName)
+
+
