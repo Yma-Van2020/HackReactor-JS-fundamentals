@@ -1,0 +1,61 @@
+// FUNCTION DEFINITION(S)
+function average(numbers) {
+  // uses sum function
+  // returns the average of an array of numbers
+  if(numbers === undefined){
+    return NaN;
+  }
+  
+   let count = 0;
+  for(let i = 0; i < numbers.length; i++){
+      count += 1;
+  }
+  return sum(numbers) / count;
+}
+
+function sum(numbers) {
+  // returns the sum of an array of numbers
+  let sum = 0;
+  for(let i = 0; i < numbers.length; i++){
+      sum += numbers[i];
+  }
+  return sum;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function aveEqual(actual, expected, testName){
+    actual = JSON.stringify(actual);
+    expected = JSON.stringify(expected);
+    
+    if(actual === expected){
+        console.log("passed");
+    } else {
+        console.log("FAILED [" +testName+ "]");
+    }
+}
+
+// TESTS CASES
+var testName = "result should be the ave of the given array"
+//empty array
+var arr1 = [];
+var result1 = average(arr1);
+var expected1 = NaN;
+aveEqual(result1, expected1, testName)
+
+//array of string
+var arr2 = ["hello", "world"];
+var result2 = average(arr2);
+var expected2 = NaN;
+aveEqual(result2, expected2, testName)
+
+//array of three numbers
+var arr3 = [1, 2, 3];
+var result3 = average(arr3);
+var expected3 = 2;
+aveEqual(result3, expected3, testName)
+
+//no array
+var arr4 = undefined;
+var result4 = average(arr4);
+var expected4 = NaN;
+aveEqual(result4, expected4, testName)
