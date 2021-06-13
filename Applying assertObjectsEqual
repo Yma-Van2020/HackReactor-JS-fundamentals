@@ -1,0 +1,34 @@
+function addFullNameProp(obj) {
+  var firstName = obj.firstName;
+  var lastName = obj["lastName"];
+
+  if (firstName && lastName) {
+    obj['fullName'] = firstName + ' ' + lastName;
+  }
+
+  return obj;
+}
+
+//assertion function
+function assertObjectsEqual(actual, expected, testName){
+    if(actual === expected){
+        console.log("passed");
+    } else { 
+        console.log("FAILED [" +testName+ "]");
+}
+}
+//test cases
+var testName = "the function should add the fullname property to the obj"
+var obj1 = {
+    firstName: "Emma",
+    lastName: "Watson"
+}
+
+var obj2 = {
+    firstName: "Joe"
+}
+var result = addFullNameProp(obj1)
+assertObjectsEqual(result, {fullName: "Emma Watson" }, testName);
+
+var result = addFullNameProp(obj2)
+assertObjectsEqual(result, {fullName: "Joe" }, testName);
