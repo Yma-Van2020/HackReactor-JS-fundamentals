@@ -1,0 +1,65 @@
+
+
+// Skeleton
+
+// FUNCTION DEFINITION(S)
+function findMaxRepeatCountInWord(word) {
+  // Break up individual words into individual letters.
+    letters = word.split("")
+  // Count the instances of each letter
+    let countObj = {};
+    for(let i = 0; i < letters.length; i++){
+       if(countObj[letters[i]] === undefined){
+           countObj[letters[i]] = 1;
+       } else {
+           countObj[letters[i]]++;
+       }
+    }
+    
+  // Iterate all the counts and find the highest
+  let highest = 0;
+  for(let key in countObj){
+      if(countObj[key] > highest){
+          highest = countObj[key];
+      }
+  }
+  return highest 
+  // Return this word's max repeat count
+}
+
+function findFirstWordWithMostRepeatedChars(text) {
+  var maxRepeatCountOverall = 0;
+  var wordWithMaxRepeatCount = '';
+
+  // Break up input text into words (space-delimited).
+  var words = text.split(" ")
+  // For each word...
+  for(let i = 0; i < words.length; i++){
+    var repeatCountForWord = findMaxRepeatCountInWord(words[i])
+    // If that max repeat count is higher than the overall max repeat count, then
+    if(repeatCountForWord > maxRepeatCountOverall ){
+      maxRepeatCountOverall = repeatCountForWord;
+      wordWithMaxRepeatCount = words[i];
+    }
+      // update maxRepeatCountOverall
+   }   // update wordWithMaxRepeatCount
+  return wordWithMaxRepeatCount;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertEqual(actual, expected, testName) {
+  if (actual === expected) {
+    console.log('passed');
+  } else {
+    console.log('FAILED [' + testName + '] Expected "' + expected + '", but got "' + actual + '"');
+  }
+}
+// TESTS CASES
+var actualMaxCount = findMaxRepeatCountInWord('bananas');
+var expectedMaxCount = 3;
+assertEqual(actualMaxCount, expectedMaxCount, 'should return count of letter that is repeated most often in input word');
+
+// TESTS FOR findFirstWordWithMostRepeatedChars
+var actualWord = findFirstWordWithMostRepeatedChars('bananas are excellent');
+var expectedWord = 'bananas';
+assertEqual(actualWord, expectedWord, 'should return word with most repeated letters');
