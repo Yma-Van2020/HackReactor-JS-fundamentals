@@ -1,0 +1,41 @@
+// Skeleton
+
+// FUNCTION DEFINITION(S)
+function isIsogram(text) {
+var letters = text.split('');
+  letters = letters.map( letter => {
+    return letter.toLowerCase();
+  });
+  letters = new Set(letters);
+  return text.length === letters.size;
+}
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assrtEqaul(actual, expected, testName){
+    if(actual === expected){
+        console.log("PASSED");
+    } else {
+        console.log('FAILED [' +testName+ '] Expected "' +expected+ '", but got "'
+        + actual)
+    }
+}
+
+// TESTS CASES
+//when the text is an empty string
+var result1 = isIsogram("") 
+var expected1 = true
+assrtEqaul(result1, expected1, "should be true if it's empty")
+
+//when the text has repeated letters
+var expected2 = false
+assrtEqaul(isIsogram("assert") , expected2, "should be false if it's non-isogram")
+
+//when the text has no repeated letters 
+var expected3 = true
+assrtEqaul(isIsogram("true") , expected3, "should be true if it's isogram")
+
+//ignore the cases
+var result3 = isIsogram("aceAce") 
+var expected3 = false
+assrtEqaul(result3, expected3, "should ignore cases")
+
