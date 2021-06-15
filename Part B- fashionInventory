@@ -1,0 +1,78 @@
+function calculateAveragePricePerDesigner(inventory) {
+  //create obj container 
+  var aveCostOfShoesPerDesinger = {
+    'designers': [
+    ]
+  };
+  
+  
+  //loop through the inventory
+  for(let i = 0; i < inventory.length; i++){
+    var designerObj = inventory[i];
+    var count = 0
+    var sum = 0
+   for(let j = 0; j < designerObj["shoes"].length; j++){
+    var designer = designerObj.name;
+    var price = designerObj.shoes[j].price;
+    count++;
+    sum += price;
+   }
+  
+      var priceObject = {
+      // first property is just name of current designer
+      name: designerObj.name,
+      // average is set to a function that we define below, function should return the average price of a shoes array
+      averagePrice:sum/count
+    }
+    
+    aveCostOfShoesPerDesinger.designers.push(priceObject);
+    
+  }
+    return aveCostOfShoesPerDesinger;
+}
+  
+
+// ASSERTION FUNCTION(S) TO BE USED
+function assertObjectsEqual(actual, expected, testName) {
+  actual = JSON.stringify(actual);
+  expected = JSON.stringify(expected);
+  if (actual === expected) {
+    console.log('passed');
+  } else {
+    console.log('FAILED [' + testName + '] Expected ' + expected + ', but got ' + actual);
+  }
+}
+
+// TESTS FOR CALCULATE AVERAGE PRICE PER DESIGNER
+var inventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      {name: 'tasselled black low-top lace-up', price: 1000},
+      {name: 'tasselled green low-top lace-up', price: 1100},
+      {name: 'plain beige suede moccasin', price: 950},
+      {name: 'plain olive suede moccasin', price: 1050}
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      {name: 'red leather laced sneakers', price: 800},
+      {name: 'black leather laced sneakers', price: 900}
+    ]
+  }
+];
+var actualOutput = renderAverageCostPerDesignerObject(inventory);
+var expectedOuput = {
+  'designers': [
+    {
+      'name': 'Brunello Cucinelli',
+      'averagePrice': 1025
+    },
+    {
+      'name': 'Gucci',
+      'averagePrice': 850
+    }
+  ]
+};
+assertObjectsEqual(actualOutput, expectedOuput, 'should return properly formatted object');
