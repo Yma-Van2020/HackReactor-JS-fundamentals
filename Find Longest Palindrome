@@ -1,0 +1,43 @@
+function findLongestPalindrome(sentence) {
+  // split sentence into words
+  let splitSentence = sentence.split(' ');
+  var palindromes = [];
+  // iterate words and collect the palindromes
+  for (var i = 0; i < splitSentence.length; ++i) {
+    if (isPalindrome(splitSentence[i])) {
+      palindromes.push(splitSentence[i]);
+    }
+  }
+  // sort the list of palindromes by word length
+  var sortedPalin = palindromes.sort(sortAscendingByLength);
+  // return the largest item in the sorted list
+  return sortedPalin[sortedPalin.length - 1];
+}
+
+function reverseString(string) {
+  return string.split('').reverse().join('');
+}
+
+function isPalindrome(word) {
+  // hint: you can detect palindromes by comparing a string to its reverse
+  return (word === reverseString(word)) ? true : false;
+}
+
+function sortAscendingByLength(a, b) {
+  return a.length - b.length;
+}
+
+function assertEqual(actual, expected, testName) {
+  if (actual === expected) {
+    console.log('passed');
+  } else {
+    console.log('FAILED [' + testName + '] Expected ' + expected + ', instead got ' + actual);
+  }
+}
+
+//assertions
+console.log(findLongestPalindrome("my pop is bob"));
+console.log(findLongestPalindrome("anna is a mom"));
+
+assertEqual(findLongestPalindrome("my pop is bob"), "bob", 'finds last longest word that is a palindrome');
+assertEqual(findLongestPalindrome("anna is a mom"), "anna", 'finds last longest word that is a palindrome');
